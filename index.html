@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Abbas Jaffery</title>
-  <meta name="description" content="Personal site of Abbas Jaffery: projects, writing, and food.">
-  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Personal site of Abbas Jaffery: projects, what I'm working on, and fun stuff.">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -28,10 +28,9 @@
       <nav aria-label="Primary">
         <ul class="nav">
           <li><a href="index.html" aria-current="page">Home</a></li>
-          <li><a href="food.html">Food</a></li>
-          <li><a href="writing.html">Writing</a></li>
           <li><a href="now.html">Now</a></li>
-          <li><a href="uses.html">Uses</a></li>
+          <li><a href="code.html">Code</a></li>
+          <li><a href="fun.html">Fun</a></li>
         </ul>
       </nav>
     </div>
@@ -60,18 +59,21 @@
 
     <div class="content">
       <section aria-labelledby="projects-h">
-        <h2 id="projects-h" class="section-title">Projects</h2>
-        <!-- Cards are rendered from data/projects.js -->
-        <ul class="grid" id="projects-grid"></ul>
+        <div class="section-head">
+          <h2 id="projects-h" class="section-title">Selected projects</h2>
+          <a class="more" href="code.html">All projects <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <!-- Rendered from data/projects.js: only projects with featured: true -->
+        <ul class="grid" id="projects-grid" data-featured-only></ul>
         <noscript><p>Turn on JavaScript to see the project list.</p></noscript>
       </section>
 
       <section aria-labelledby="elsewhere-h">
         <h2 id="elsewhere-h" class="section-title">Elsewhere on this site</h2>
         <ul class="elsewhere-list">
-          <li><a href="food.html"><span class="elsewhere-title">Food</span><span class="elsewhere-desc">Restaurants, rated by apparent magnitude.</span></a></li>
-          <li><a href="writing.html"><span class="elsewhere-title">Writing</span><span class="elsewhere-desc">Fiction, essays, and explainers.</span></a></li>
-          <li><a href="now.html"><span class="elsewhere-title">Now</span><span class="elsewhere-desc">What I&rsquo;m up to at the moment.</span></a></li>
+          <li><a href="now.html"><span class="elsewhere-title">Now</span><span class="elsewhere-desc">What I&rsquo;m working on at the moment.</span></a></li>
+          <li><a href="code.html"><span class="elsewhere-title">Code</span><span class="elsewhere-desc">Projects I&rsquo;ve built, and what they do.</span></a></li>
+          <li><a href="fun.html"><span class="elsewhere-title">Fun</span><span class="elsewhere-desc">Food reviews, writing, and whatever else.</span></a></li>
         </ul>
       </section>
     </div>

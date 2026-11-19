@@ -2,13 +2,20 @@
 
 Personal site. Plain HTML, one stylesheet (`css/style.css`), one script (`js/main.js`). No framework, no build step, no Jekyll (`.nojekyll` turns it off), no tracking. The only external request is one Google Fonts stylesheet.
 
+The nav has four tabs: **Home**, **Now** (what I'm working on), **Code** (all projects) and **Fun** (a hub for everything else). Food, Writing and Uses are pages under Fun.
+
 ```
-index.html              Home: sidebar intro + projects
-food.html               Restaurant reviews (magnitude scale)
-writing.html            Writing index with category filters
+index.html              Home: sidebar intro + featured projects
+now.html                What I'm working on
+code.html               All projects with descriptions
+fun.html                Hub page linking to the fun sections
+food.html               Restaurant reviews (magnitude scale), under Fun
+writing.html            Writing index with category filters, under Fun
 writing/example-piece.html   Template for a single piece
-now.html  uses.html  colophon.html  404.html
-data/projects.js        Project cards
+uses.html               Hardware and software, under Fun
+colophon.html  404.html
+data/projects.js        Projects (Code page, and featured ones on Home)
+data/fun.js             Sections on the Fun page
 data/food.js            Restaurant reviews
 data/writing.js         Writing entries
 css/style.css           All styles; colors are custom properties on :root
@@ -29,16 +36,35 @@ Add an object to `window.PROJECTS` in `data/projects.js`:
 ```js
 {
   title: "My project",
-  description: "First sentence. Second sentence.",
+  description: "What it is. Why it's interesting.",
+  details: "Optional longer paragraph, shown only on the Code page.",
   tags: ["Python", "Imaging"],
-  url: "https://github.com/abbasjaffery/my-project",
-  linkLabel: "View on GitHub",               // optional
+  url: "https://example.com/demo",          // optional main link
+  linkLabel: "Try the demo",                // optional; defaults to "View project"
+  repo: "https://github.com/abbasjaffery/my-project",   // optional "Source" link
   image: { src: "assets/images/my-project.jpg", alt: "What the image shows" },
+  featured: true,                           // also show it on the home page
   placeholder: false,
 },
 ```
 
-Cards appear in the order they're listed. Use `src: null` to keep the placeholder box.
+Every project appears on the Code page, in the order listed. Only `featured: true` projects appear on the home page; if none are featured, the home page shows them all. Use `src: null` to keep the placeholder box.
+
+## Add something to the Fun page
+
+Add an object to `window.FUN_SECTIONS` in `data/fun.js`:
+
+```js
+{
+  title: "Video games",
+  description: "One line about what's there.",
+  url: "games.html",              // null if the page doesn't exist yet
+  status: "Coming soon",          // optional badge
+  placeholder: false,
+},
+```
+
+To give it its own page, copy `uses.html` (a plain page) or `food.html` (a page rendered from a data file) and change the content. Keep the breadcrumb line (`Fun / …`) at the top so people can find their way back.
 
 ## Add a food review
 
@@ -95,9 +121,9 @@ Edit `now.html` directly: change the bullets under Work, Building, Reading and E
 
 ## Change colors or fonts
 
-Colors are custom properties at the top of `css/style.css`: light values on `:root`, dark values in the `prefers-color-scheme: dark` block. `--accent` is the one accent color. Fonts are loaded by the Google Fonts `<link>` in each page's `<head>` and named in `--font-display`, `--font-body` and `--font-mono`.
+The site is dark-only. Colors are custom properties on `:root` at the top of `css/style.css`, and `--accent` is the one accent color. Fonts are loaded by the Google Fonts `<link>` in each page's `<head>` and named in `--font-display`, `--font-body` and `--font-mono`.
 
-The header and footer are copied into every page. If you change the nav, change it in all eight HTML files.
+The header and footer are copied into every page. If you change the nav, change it in every HTML file (including `writing/example-piece.html` and `404.html`).
 
 ## Preview locally
 

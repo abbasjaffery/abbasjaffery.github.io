@@ -4,45 +4,30 @@
              food · writing · prose/article · misc pages · utilities
    ========================================================================== */
 
-/* ---------- Tokens ---------- */
+/* ---------- Tokens ----------
+   The site is dark-only. Change colors here. */
 :root {
-  --bg: #fbfaf7;
-  --surface: #ffffff;
-  --surface-2: #f2f0eb;
-  --fg: #1d1b26;
-  --muted: #585467;
-  --rule: #e2dfd8;
-  --accent: #3a47c4;
-  --accent-ink: #ffffff;
-  --accent-soft: #e9ebfb;
-  --ph-line: #a39d92;
-  --focus: #3a47c4;
+  --bg: #0e1016;
+  --surface: #161922;
+  --surface-2: #1c202b;
+  --fg: #e7e5ef;
+  --muted: #a6a3b5;
+  --rule: #2a2f3c;
+  --accent: #9ba6ff;
+  --accent-ink: #0e1016;
+  --accent-soft: #1e2340;
+  --ph-line: #6b6880;
+  --focus: #9ba6ff;
 
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --measure: 66ch;
   --radius: 6px;
   --gutter: 1rem;
 
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0e1016;
-    --surface: #161922;
-    --surface-2: #1c202b;
-    --fg: #e7e5ef;
-    --muted: #a6a3b5;
-    --rule: #2a2f3c;
-    --accent: #9ba6ff;
-    --accent-ink: #0e1016;
-    --accent-soft: #1e2340;
-    --ph-line: #6b6880;
-    --focus: #9ba6ff;
-  }
+  color-scheme: dark;
 }
 
 /* ---------- Base ---------- */
@@ -54,7 +39,10 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font: 1.0625rem/1.65 var(--font-body);
+  font: 1rem/1.7 var(--font-body);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-wrap: break-word;
   display: flex;
   flex-direction: column;
@@ -80,9 +68,9 @@ a:hover { text-decoration-thickness: 2px; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   margin: 0 0 0.5em;
 }
 h1 { font-size: clamp(2rem, 6vw, 2.75rem); }
@@ -156,7 +144,8 @@ code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }
   align-items: center;
   gap: 0.5rem;
   color: var(--fg);
-  font: 600 1.15rem/1.2 var(--font-display);
+  font: 600 1.05rem/1.2 var(--font-display);
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 .brand svg { width: 1.75rem; height: 1.75rem; color: var(--accent); flex: none; }
@@ -238,7 +227,7 @@ code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }
   border-radius: 50%;
   margin-bottom: 1.5rem;
 }
-.sidebar .name { font-size: 2.25rem; margin-bottom: 0.4rem; }
+.sidebar .name { font-size: 2.25rem; letter-spacing: -0.035em; margin-bottom: 0.4rem; }
 .sidebar .intro { font-size: 1.15rem; color: var(--muted); }
 
 .links {
@@ -280,7 +269,7 @@ code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }
   text-decoration: none;
 }
 .elsewhere-list a:hover .elsewhere-title { text-decoration: underline; }
-.elsewhere-title { display: block; font: 600 1.15rem/1.3 var(--font-display); color: var(--accent); }
+.elsewhere-title { display: block; font: 600 1.05rem/1.3 var(--font-display); color: var(--accent); }
 .elsewhere-desc { display: block; color: var(--muted); font-size: 0.95rem; margin-top: 0.2rem; }
 
 /* ---------- Cards ---------- */
@@ -316,6 +305,47 @@ code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }
 }
 
 .more { margin-top: auto; font: 0.875rem/1.5 var(--font-mono); }
+.card-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: auto; }
+.card-links .more { margin-top: 0; }
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.section-head h2 { margin: 0; }
+
+/* Code page: one wide card per project, image beside the text on larger screens */
+.project-list { display: grid; gap: 1.5rem; max-width: 60rem; margin: 0; padding: 0; list-style: none; }
+.project-list .details { color: var(--muted); }
+@media (min-width: 700px) {
+  .project-list .card {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-content: start;
+  }
+  .project-list .card > * { grid-column: 2; }
+  .project-list .card > .img-ph,
+  .project-list .card > img { grid-column: 1; grid-row: 1 / span 6; align-self: start; }
+}
+
+/* Fun hub cards: the whole card is the link */
+.hub-card { height: 100%; color: var(--fg); text-decoration: none; transition: border-color 0.15s; }
+a.hub-card:hover { border-color: var(--accent); }
+a.hub-card:hover h3 { color: var(--accent); }
+.hub-card .badge {
+  align-self: flex-start;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--fg);
+  font: 0.75rem/1.5 var(--font-mono);
+}
+.hub-card .desc { color: var(--muted); }
 
 /* ---------- Food ---------- */
 .jump {
@@ -479,9 +509,9 @@ select {
 .article-head { margin-bottom: 2.5rem; }
 .article-head h1 { font-size: clamp(2.1rem, 7vw, 3rem); }
 .article-meta { color: var(--muted); font: 0.85rem/1.5 var(--font-mono); }
-.dek { font-size: 1.25rem; color: var(--muted); font-style: italic; }
+.dek { font-size: 1.2rem; color: var(--muted); }
 
-.article-body { font-size: 1.175rem; line-height: 1.75; }
+.article-body { font-size: 1.125rem; line-height: 1.75; }
 .article-body h2 { font-size: 1.5rem; margin-top: 2.75rem; }
 .article-body blockquote {
   margin: 2rem 0;

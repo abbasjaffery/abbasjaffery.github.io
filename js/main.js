@@ -28,24 +28,53 @@
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  /* ---------- Projects (index.html) ---------- */
+  /* ---------- Projects (index.html: featured only · code.html: all, with details) ---------- */
   const projectsGrid = document.getElementById("projects-grid");
   if (projectsGrid) {
-    const projects = window.PROJECTS || [];
+    const all = window.PROJECTS || [];
+    const featuredOnly = projectsGrid.hasAttribute("data-featured-only");
+    const showDetails = projectsGrid.hasAttribute("data-details");
+    const featured = all.filter((p) => p.featured);
+    // If nothing is marked featured yet, the home page shows everything.
+    const projects = featuredOnly && featured.length ? featured : all;
+
     projectsGrid.innerHTML = projects
       .map((p) => {
         const img = p.image && p.image.src
           ? `<img src="${esc(p.image.src)}" alt="${esc(p.image.alt)}" loading="lazy">`
           : `<div class="img-ph" role="img" aria-label="Image placeholder"><span>[Project image]</span></div>`;
         const tags = (p.tags || []).map((t) => `<li class="tag">${esc(t)}</li>`).join("");
+        const details = showDetails && p.details ? `<p class="details">${esc(p.details)}</p>` : "";
+        const links = [];
+        if (p.url) {
+          links.push(`<a class="more" href="${esc(p.url)}">${esc(p.linkLabel || "View project")}<span class="sr-only">: ${esc(p.title)}</span> <span aria-hidden="true">→</span></a>`);
+        }
+        if (p.repo) {
+          links.push(`<a class="more" href="${esc(p.repo)}">Source<span class="sr-only"> for ${esc(p.title)}</span> <span aria-hidden="true">↗</span></a>`);
+        }
         return `
           <li class="card${phClass(p)}">
             ${img}
             <h3>${esc(p.title)}</h3>
             <p>${esc(p.description)}</p>
+            ${details}
             <ul class="tags" aria-label="Tags">${tags}</ul>
-            <a class="more" href="${esc(p.url || "#")}">${esc(p.linkLabel || "View project")}<span class="sr-only">: ${esc(p.title)}</span> <span aria-hidden="true">→</span></a>
+            ${links.length ? `<div class="card-links">${links.join("")}</div>` : ""}
           </li>`;
+      })
+      .join("");
+  }
+
+  /* ---------- Fun hub (fun.html) ---------- */
+  const funGrid = document.getElementById("fun-grid");
+  if (funGrid) {
+    funGrid.innerHTML = (window.FUN_SECTIONS || [])
+      .map((s) => {
+        const badge = s.status ? `<span class="badge">${esc(s.status)}</span>` : "";
+        const inner = `${badge}<h3>${esc(s.title)}</h3><p class="desc">${esc(s.description)}</p>`;
+        return s.url
+          ? `<li><a class="card hub-card${phClass(s)}" href="${esc(s.url)}">${inner}</a></li>`
+          : `<li><div class="card hub-card${phClass(s)}">${inner}</div></li>`;
       })
       .join("");
   }
