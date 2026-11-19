@@ -4,62 +4,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Abbas Jaffery</title>
-  <meta name="description" content="Personal site of Abbas Jaffery. Work in progress.">
-  <style>
-    :root {
-      --bg: #fafaf9;
-      --fg: #1c1917;
-      --muted: #78716c;
-      --accent: #2563eb;
-      --rule: #e7e5e4;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #141414;
-        --fg: #f5f5f4;
-        --muted: #a8a29e;
-        --accent: #60a5fa;
-        --rule: #292524;
-      }
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      background: var(--bg);
-      color: var(--fg);
-      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-    main { max-width: 34rem; width: 100%; }
-    h1 { font-size: 2.25rem; line-height: 1.2; margin: 0 0 0.25rem; letter-spacing: -0.02em; }
-    .tagline { color: var(--muted); margin: 0 0 1.5rem; }
-    p { margin: 0 0 1rem; }
-    hr { border: 0; border-top: 1px solid var(--rule); margin: 1.75rem 0; }
-    ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { color: var(--muted); font-size: 0.875rem; margin-top: 2.5rem; }
-  </style>
+  <meta name="description" content="Personal site of Abbas Jaffery: projects, writing, and food.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main>
-    <h1>Abbas Jaffery</h1>
-    <p class="tagline">This site is a work in progress.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <p>Hi, I'm Abbas. This page is a placeholder while I put together something more complete. Check back soon.</p>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <ellipse cx="16" cy="16" rx="13" ry="6" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55" transform="rotate(-25 16 16)"/>
+          <path fill="currentColor" d="M16 8.5 17.6 14.4 23.5 16 17.6 17.6 16 23.5 14.4 17.6 8.5 16 14.4 14.4Z"/>
+          <circle cx="27.8" cy="10.5" r="1.8" fill="currentColor"/>
+        </svg>
+        <span>Abbas Jaffery</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="food.html">Food</a></li>
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="uses.html">Uses</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <hr>
+  <main id="main" class="wrap split">
+    <aside class="sidebar" aria-label="About">
+      <!-- TODO: replace this box with your photo:
+           <img class="photo" src="assets/images/photo.jpg" alt="[Describe the photo]"> -->
+      <div class="img-ph photo" role="img" aria-label="Photo placeholder"><span>[Photo]</span></div>
 
-    <ul>
-      <li><a href="https://github.com/abbasjaffery">GitHub</a></li>
-    </ul>
+      <h1 class="name">Abbas Jaffery</h1>
+      <p class="intro placeholder">[One-line intro]</p>
+      <p class="bio placeholder">[Short bio paragraph]</p>
 
-    <footer>&copy; <span id="year">2026</span> Abbas Jaffery</footer>
+      <ul class="links">
+        <li><a href="https://github.com/abbasjaffery">GitHub</a></li>
+        <!-- TODO: LinkedIn profile URL -->
+        <li><a class="placeholder" href="#">[LinkedIn]</a></li>
+        <!-- TODO: email address -->
+        <li><a class="placeholder" href="mailto:[email]">[Email]</a></li>
+        <!-- TODO: add the PDF at assets/resume/resume.pdf -->
+        <li><a class="placeholder" href="assets/resume/resume.pdf">Resume (PDF)</a></li>
+      </ul>
+    </aside>
+
+    <div class="content">
+      <section aria-labelledby="projects-h">
+        <h2 id="projects-h" class="section-title">Projects</h2>
+        <!-- Cards are rendered from data/projects.js -->
+        <ul class="grid" id="projects-grid"></ul>
+        <noscript><p>Turn on JavaScript to see the project list.</p></noscript>
+      </section>
+
+      <section aria-labelledby="elsewhere-h">
+        <h2 id="elsewhere-h" class="section-title">Elsewhere on this site</h2>
+        <ul class="elsewhere-list">
+          <li><a href="food.html"><span class="elsewhere-title">Food</span><span class="elsewhere-desc">Restaurants, rated by apparent magnitude.</span></a></li>
+          <li><a href="writing.html"><span class="elsewhere-title">Writing</span><span class="elsewhere-desc">Fiction, essays, and explainers.</span></a></li>
+          <li><a href="now.html"><span class="elsewhere-title">Now</span><span class="elsewhere-desc">What I&rsquo;m up to at the moment.</span></a></li>
+        </ul>
+      </section>
+    </div>
   </main>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> Abbas Jaffery · <a href="colophon.html">Colophon</a> · <a href="https://github.com/abbasjaffery/abbasjaffery.github.io">Source</a></p>
+    </div>
+  </footer>
+  <script src="data/projects.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .c { color: #3a47c4; }
+    @media (prefers-color-scheme: dark) { .c { color: #9ba6ff; } }
+  </style>
+  <g class="c">
+    <ellipse cx="16" cy="16" rx="13" ry="6" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6" transform="rotate(-25 16 16)"/>
+    <path fill="currentColor" d="M16 7 18 14 25 16 18 18 16 25 14 18 7 16 14 14Z"/>
+    <circle cx="27.8" cy="10.5" r="2.2" fill="currentColor"/>
+  </g>
+</svg>
